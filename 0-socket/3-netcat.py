@@ -6,11 +6,15 @@ import sys
 import textwrap
 import threading
 
+# Takes a command string as input.
 def execute(cmd):
+    # Strips leading/trailing whitespace.
     cmd = cmd.strip()
     if not cmd:
         return
+    # Executes the command using subpocess.check_output(), capturing both stdout and stderr.
     output = subprocess.check_output(shlex.split(cmd), stderr=subprocess.STDOUT)
+    # Returns the decoded output as a string.   
     return output.decode()
 
 class NetCat:
